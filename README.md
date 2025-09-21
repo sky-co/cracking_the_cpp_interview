@@ -1,4 +1,5 @@
-# cracking_the_cpp_interview
+# Cracking the C++ Interview
+![cover](pic/cover.jpg)
 
 ## 自我介绍
 > 芝兰生于深谷，不以无人而不芳
