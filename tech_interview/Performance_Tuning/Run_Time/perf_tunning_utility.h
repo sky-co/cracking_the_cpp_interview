@@ -47,11 +47,4 @@
 #define RESTRICT
 #endif
 
-// 控制编译器优化行为（仅 GCC/Clang 支持）
-#ifdef __GNUC__
-#define GCC_OPTIMIZE(level) _Pragma(#level)
-#else
-#define GCC_OPTIMIZE(level)
-#endif
-
 #endif // PERF_TUNNING_UTILITY_H

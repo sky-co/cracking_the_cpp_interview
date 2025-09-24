@@ -51,12 +51,6 @@ int restrict_sum(int* RESTRICT a, int* RESTRICT b, int n) {
     return sum;
 }
 
-// GCC_OPTIMIZE 测试（仅演示用，实际效果需编译器支持）
-void test_gcc_optimize() {
-    GCC_OPTIMIZE(GCC optimize("O3"));
-    std::cout << "GCC_OPTIMIZE macro used (check compiler output for effect)." << std::endl;
-}
-
 int main() {
     test_noinline_func();
 
@@ -76,8 +70,6 @@ int main() {
     int a[] = {1, 2, 3};
     int b[] = {4, 5, 6};
     assert(restrict_sum(a, b, 3) == 21);
-
-    test_gcc_optimize();
 
     std::cout << "All perf_tunning_utility macro tests passed." << std::endl;
     return 0;
