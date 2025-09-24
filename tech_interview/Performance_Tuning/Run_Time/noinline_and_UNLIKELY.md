@@ -1,5 +1,7 @@
-## 性能调优中的常见编译器指令和宏
+# 性能调优中的常见编译器指令和宏
+![hacker](pic/hacker.png)
 
+## 常见编译器指令和宏
 在 C++ 性能调优过程中，合理使用编译器指令和宏可以显著提高程序的执行效率。以下介绍常见的编译器指令及其用途，并结合 `perf_tunning_utility.h` 文件给出示例。
 
 ### NOINLINE
@@ -71,15 +73,12 @@ int restrict_sum(int* RESTRICT a, int* RESTRICT b, int n) {
 }
 ```
 
-### GCC_OPTIMIZE
-控制编译器优化行为（仅 GCC/Clang 支持），可用于指定函数或代码块的优化级别。
+![tuning_light](pic/tuning_light.png)
 
-```cpp
-void foo() {
-    GCC_OPTIMIZE(GCC optimize("O3"));
-    // 该函数使用 O3 优化
-}
-```
+## 代码演示
+由于篇幅限制，这里就没有粘贴具体的代码和使用测试代码，有兴趣的同学可以访问 [compiler_directive](https://github.com/sky-co/cpp_performance_tunning/tree/main/Run_Time)，运行并亲自体验配合其他性能调优根据的效果。
+以下是工具代码的测试截图：
+![compiler_directive](pic/compiler_directive.png)
 
 ---
 
@@ -89,14 +88,13 @@ void foo() {
 - **内存访问优化**：对大数组或密集数据结构访问场景，使用 `PREFETCH` 提高缓存命中率，减少内存延迟。
 - **热点与冷点标记**：将高频调用的性能关键函数用 `PERFORMANCE_SENSITIVE` 标记，低频或异常处理函数用 `PERFORMANCE_COLD` 标记，帮助编译器优化指令布局。
 - **指针限定**：在明确无指针重叠的场景下使用 `RESTRICT`，提升编译器内存访问优化能力。
-- **编译器优化控制**：根据实际需求灵活调整优化级别，使用 `GCC_OPTIMIZE` 控制特定函数的优化策略，避免全局优化带来的副作用。
 - **统一封装与团队规范**：建议将常用宏统一封装在头文件中，便于团队协作和代码复用，减少重复劳动和出错概率。
 
 ---
 
 ## 参考资料
 
-- GCC 官方文档: https://gcc.gnu.org/onlinedocs/
-- Clang Attributes Reference: https://clang.llvm.org/docs/AttributeReference.html
-- Linux man pages: https://man7.org/linux/man-pages/
+- [GCC 官方文档](https://gcc.gnu.org/onlinedocs)
+- [Clang Attributes Reference](https://clang.llvm.org/docs/AttributeReference.html)
+- [Linux man pages](https://man7.org/linux/man-pages)
 - [ISO C++ 标准草案](https://isocpp.org/std/the-standard)
